@@ -258,14 +258,15 @@
     }
     .hero-stats > div {
       flex: 1;
-      padding: 0 32px 0 0;
+      padding: 0 32px;
       border-left: 1.5px solid var(--border);
-      margin-left: 32px;
     }
     .hero-stats > div:first-child {
       padding-right: 0;
+    }
+    .hero-stats > div:last-child {
       border-left: none;
-      margin-left: 0;
+      padding-left: 0;
     }
     .stat-num {
       font-family: var(--ff-brand);
@@ -799,20 +800,88 @@
     /* ─── RESPONSIVE ─────────────────────────────── */
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: 1fr; }
-
       .cards-grid { grid-template-columns: 1fr; gap: 16px; }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
       .steps-connector { display: none; }
-      .testimonials { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
+
     @media (max-width: 580px) {
-      .steps-grid { grid-template-columns: 1fr; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
-      h1 { font-size: 2.1rem; }
-      .trust-items { justify-content: center; }
+      /* ─── HERO ─── */
+      #hero { padding: 100px 0 60px; min-height: auto; }
+      h1 { font-size: 2rem; }
+      .hero-sub { font-size: 16px; }
+
+      /* Buttons — stack full-width */
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* Stats — clean vertical stack */
+      .hero-stats {
+        flex-direction: column;
+        gap: 0;
+        margin-top: 40px;
+        padding-top: 28px;
+      }
+      .hero-stats > div {
+        padding: 16px 0;
+        border-left: none;
+        margin-left: 0;
+        border-bottom: 1.5px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .hero-stats > div:last-child { border-bottom: none; }
+      .hero-stats > div:first-child { padding-top: 0; }
+      .stat-num { font-size: 1.8rem; min-width: 80px; }
+
+      /* ─── STEPS ─── */
+      .steps-grid { grid-template-columns: 1fr; gap: 0; }
+      .steps-connector { display: none; }
+
+      /* Each step as horizontal card on mobile */
+      .step {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        column-gap: 18px;
+        text-align: right;
+        padding: 28px 24px;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        align-items: start;
+      }
+      .step:last-child { border-bottom: none; }
+
+      /* Circle goes to the left column, spans rows */
+      .step-circle {
+        grid-column: 1;
+        grid-row: 1 / 4;
+        margin: 0;
+        width: 52px;
+        height: 52px;
+        font-size: 1.2rem;
+        align-self: start;
+        margin-top: 3px;
+      }
+
+      /* Text content flows in right column */
+      .step h3 { grid-column: 2; font-size: 15px; margin-bottom: 6px; }
+      .step p  { grid-column: 2; font-size: 13px; margin-bottom: 8px; }
+      .step-tag { grid-column: 2; margin-top: 0; }
+
+      /* ─── OTHER ─── */
+      .trust-items { justify-content: center; gap: 24px; }
+      .trust-item { flex: 0 0 42%; }
     }
   </style>
 </head>
@@ -836,7 +905,7 @@
       <div class="hero-inner" style="text-align:right;">
         <!-- TEXT -->
         <div>
-          <div class="hero-eyebrow fade-up">פרוגרם שיתוף פעולה | Pyoor לרופאי שיניים</div>
+          <div class="hero-eyebrow fade-up">תוכנית שיתוף פעולה | Pyoor לרופאי שיניים</div>
           <h1 class="fade-up delay-1">
             מטופלים שכבר שילמו —<br/>
             <em>ישר ליומן שלכם.</em>
@@ -879,7 +948,7 @@
       <div class="cards-grid">
 
         <div class="value-card">
-          <span class="card-persona persona-owner">לבעל המרפאה</span>
+          <span class="card-persona persona-owner">למרפאה</span>
           <div class="card-icon icon-coral">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="2" y="5" width="22" height="18" rx="3" stroke="#FF414D" stroke-width="1.8" fill="none"/>
@@ -890,7 +959,7 @@
               <path d="M10.5 15.5L13 18.5l2.5-3" stroke="#FF414D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <h3>מנוע צמיחה מחוץ לבניין שלכם</h3>
+          <h3>מנוע צמיחה למרפאה</h3>
           <p>אנחנו מפרסמים, מסננים, מנהלים תהליך מכירה מלא ומבצעים גבייה — הכל לפני שהמטופל מגיע.</p>
           <ul>
             <li>יומן מלא ללא מאמץ שיווקי מצדכם</li>
@@ -900,7 +969,7 @@
         </div>
 
         <div class="value-card">
-          <span class="card-persona persona-owner">לבעל המרפאה</span>
+          <span class="card-persona persona-owner">למרפאה</span>
           <div class="card-icon icon-coral">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="2" y="14" width="5" height="9" rx="1.5" fill="#FF414D" opacity="0.35"/>
